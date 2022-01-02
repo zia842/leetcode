@@ -1,5 +1,8 @@
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Given the head of a linked list, find all the values that appear more than once in the 
@@ -20,8 +23,48 @@ import java.util.Map;
  *
  */
 public class RemoveDuplicatesFromLinkedList {
+	
+	public ListNode deleteDuplicates(ListNode head) {
+		ListNode copyOfHead = head;
+		
+		while(copyOfHead!=null && copyOfHead.next!=null) {
+			if(copyOfHead.next.val == copyOfHead.val) {
+				copyOfHead.next = copyOfHead.next.next;
+			}
+			else {
+				copyOfHead = copyOfHead.next;
+			}
+		}
+		
+		return head;
+	}
 
 	public ListNode deleteDuplicatesUnsorted(ListNode head) {
+		Set<Integer> set = new HashSet<>();
+		Set<Integer> list = new LinkedHashSet<>();
+
+		while(head != null){
+			if(set.contains(head.val)){
+				list.remove(head.val);
+			} 
+			else{
+				list.add(head.val);
+				set.add(head.val);
+			}
+			head = head.next;
+		}
+
+		head = new ListNode();
+		ListNode temp = head;
+
+		for (int val : list) {
+			temp.next = new ListNode(val);
+			temp = temp.next;
+		}
+		return head.next;
+	}
+
+	public ListNode deleteDuplicatesUnsortedCustom(ListNode head) {
 		ListNode copyOfHead = head;
 		ListNode p = null;
 		ListNode modifiedHead = copyOfHead;
@@ -42,22 +85,36 @@ public class RemoveDuplicatesFromLinkedList {
 					copyOfHead = copyOfHead.next; //Advance Pointer
 					continue;
 				}
+				//If p is null but check if head node needs to be deleted
+				copyOfHead = copyOfHead.next;
 			}
 			p = copyOfHead; //Before advancing pointer take a copy
 			copyOfHead = copyOfHead.next; //Advance Pointer
 		}
-		
-		
 		return modifiedHead;
 		
 	}
 	
 	public static void main(String []args) {
 		RemoveDuplicatesFromLinkedList r = new RemoveDuplicatesFromLinkedList();
-		//ListNode l1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(2))));
+		ListNode l1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(2))));
 		//l1 = r.deleteDuplicatesUnsorted(l1);
-		ListNode l1 = new ListNode(2, new ListNode(1, new ListNode(1, new ListNode(2))));
-		l1 = r.deleteDuplicatesUnsorted(l1);
+		
+		l1 = new ListNode(3, new ListNode(2, new ListNode(2, new ListNode(1, new ListNode(3, new ListNode(2, new ListNode(4)))))));
+		//l1 = r.deleteDuplicatesUnsorted(l1);
+		
+		l1 = new ListNode(2, new ListNode(1, new ListNode(1, new ListNode(2))));
+		//l1 = r.deleteDuplicatesUnsorted(l1);
+		
+		
+		l1 = new ListNode(1, new ListNode(1, new ListNode(2)));
+		l1 = r.deleteDuplicates(l1);
+		
+		l1 = new ListNode(1, new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(3)))));
+		l1 = r.deleteDuplicates(l1);
+		
+		l1 = new ListNode(1, new ListNode(1, new ListNode(1)));
+		l1 = r.deleteDuplicates(l1);
 		
 	}
 }

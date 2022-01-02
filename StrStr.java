@@ -2,9 +2,6 @@
 public class StrStr {
 	
 	 public int strStr(String haystack, String needle) {
-		 int i = 0;
-		 int j = 0;
-	     
 		 if(haystack!=null && haystack!="" && needle!=null && needle!="") {
 			 
 			/*
@@ -18,18 +15,21 @@ public class StrStr {
 			 */
 			 
 			 if(haystack.contains(needle)) {
-				 haystack.indexOf(needle);
+				 return haystack.indexOf(needle);
 			 }
 			 
 		 }
 		 
-	     return i;   
+	     return -1;   
 	 }
 	 
 	 
 	 public static void main(String []args) {
 		 StrStr s = new StrStr();
-		 System.out.println(s.strStr("hello", "ll"));
+		 System.out.println(s.strStr("hello", "ll")); //2
+		 System.out.println(s.strStr("thepigflewwow", "flew")); //6
+		 System.out.println(s.strStr("twocanplay", "two")); //0
+		 System.out.println(s.strStr("wherearemyshorts", "pork")); //-1
 	 }
 
 }

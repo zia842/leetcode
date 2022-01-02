@@ -21,15 +21,25 @@ public class BinaryTreeLevelOrder {
 		List<List<Integer>> levelOrderList = new ArrayList<List<Integer>>();
 		Queue<BinaryTreeNode> queue = new LinkedList<BinaryTreeNode>();
 		queue.add(root);
+		queue.add(new BinaryTreeNode(1002)); //Marking end anything can be taken which does not have constraint
 		
 		List<Integer> resultList = new ArrayList<Integer>();
 		while(queue!=null && !queue.isEmpty()) {
 			BinaryTreeNode node = queue.poll();
-			resultList.add(node.val);
-			if(queue.isEmpty()) {
-				levelOrderList.add(resultList);
-				resultList = new ArrayList<Integer>();
+		
+			if(node.val == 1002) {
+				if(!resultList.isEmpty() && resultList.size() > 0) {
+					levelOrderList.add(resultList);
+					resultList = new ArrayList<Integer>();
+					queue.offer(node);
+				}
+				continue;
 			}
+			resultList.add(node.val);
+			/*
+			 * if(queue.isEmpty()) { levelOrderList.add(resultList); resultList = new
+			 * ArrayList<Integer>(); }
+			 */
 			if(node.left!=null) {
 				queue.add(node.left);
 			}
@@ -50,7 +60,25 @@ public class BinaryTreeLevelOrder {
 		root.right = new BinaryTreeNode(20);
 		root.right.left = new BinaryTreeNode(15);
 		root.right.right = new BinaryTreeNode(7);
-		b.levelOrder(root);
+		System.out.println(b.levelOrder(root));
+		
+		
+		root = new BinaryTreeNode(1);
+		root.left = new BinaryTreeNode(2);
+		root.right = new BinaryTreeNode(3);
+		root.left.left = new BinaryTreeNode(4);
+		root.left.right = new BinaryTreeNode(5);
+		
+		System.out.println(b.levelOrder(root));
+		
+		root = new BinaryTreeNode(1);
+		root.left = new BinaryTreeNode(2);
+		root.right = new BinaryTreeNode(3);
+		root.left.left = new BinaryTreeNode(4);
+		root.right.right = new BinaryTreeNode(5);
+		
+		System.out.println(b.levelOrder(root));
+		
 	}
 
 }

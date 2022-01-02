@@ -20,6 +20,8 @@ public class SearchInRotatedArray {
         	}
         }
         
+        System.out.println(nums[left] + " " + nums[right]);
+        
         int start = left;
         left = 0;
         right = nums.length-1;
