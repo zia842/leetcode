@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,7 +58,12 @@ public class ShortestWordDistance {
 		System.out.println(s.shortestDistance(new String[] {"practice", "makes", "perfect", "coding", "makes"}, "coding", "practice"));
 		System.out.println(s.shortestDistance(new String[] {"practice", "makes", "perfect", "coding", "makes"}, "makes", "coding"));
 		System.out.println(s.shortestDistance(new String[] {"a","a","b","b"}, "a", "b"));
-
+		
+		List<String> t = new ArrayList<String>();
+		t.add("test");
+		t.add("test1");
+		
+		System.out.println(t);
 
 
 	}

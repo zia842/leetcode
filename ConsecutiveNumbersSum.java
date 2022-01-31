@@ -37,7 +37,7 @@ Return the counter.
 
 public class ConsecutiveNumbersSum {
 
-	public int consecutiveNumbersSum(int n) {
+	public int consecutiveNumbersSumFormula(int n) {
 		
 		int counter = 0;
 		int upperLimit = (int)(Math.sqrt(2 * n + 0.25) - 0.5);
@@ -48,5 +48,27 @@ public class ConsecutiveNumbersSum {
         } 
 		return counter;
 
+	}
+	
+	/**
+	 * Example 15 ->    4    +    5    +   6
+	 *               (3 + 1) + (3 + 2) +  (3 + 3)
+	 *               base = 3
+	 *               3 + 3 + 3 = 15 - 1 - 2 - 3
+	 *               9 % 3 == 0 
+	 * @param n
+	 * @return
+	 */
+	public int consecutiveNumbersSum(int n) {
+		int count = 0;
+		int i = 1;
+		while(n > 0) {
+			n-= i;
+			if(n%i==0) {
+				count++;
+			}
+			i++;
+		}
+		return count;
 	}
 }

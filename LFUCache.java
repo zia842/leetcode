@@ -71,6 +71,10 @@ public class LFUCache {
 		lfu.put(1, 1);   // cache=[1,_], cnt(1)=1
 		lfu.put(2, 2);   // cache=[2,1], cnt(2)=1, cnt(1)=1
 		
+		System.out.println(Runtime.getRuntime().totalMemory());
+		System.out.println(Runtime.getRuntime().maxMemory());
+		System.out.println(Runtime.getRuntime().freeMemory());
+		
 		lfu.get(1);      // return 1
 		// cache=[1,2], cnt(2)=1, cnt(1)=2
 		
