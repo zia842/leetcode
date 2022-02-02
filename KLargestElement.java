@@ -1,8 +1,9 @@
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class KLargestElement {
 
-	public int findKthLargest(int[] nums, int k) {
+	public int findKthLargestUsingSort(int[] nums, int k) {
 		
 		if(k > nums.length) {
 			return -1;
@@ -19,6 +20,24 @@ public class KLargestElement {
 		}
 
 		return result;
+	}
+	
+	
+	public int findKthLargest(int[] nums, int k) {
+		if(k > nums.length) {
+			return -1;
+		}
+		
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+		for(int n : nums) {
+			pq.offer(n);
+			
+			if(pq.size() > k) {
+				pq.poll();
+			}
+		}
+		
+		 return !pq.isEmpty() && pq.size() > 0 ? pq.poll() : -1;
 	}
 	
 	public static void main(String []args) {
