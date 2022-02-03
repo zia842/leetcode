@@ -1,4 +1,8 @@
-
+/**
+ * Kadens Algo
+ * @author zia84
+ *
+ */
 public class MaxSubArray {
 
 	public int maxSubArray(int[] nums) {
