@@ -30,6 +30,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FirstUniqueCharacterInStr {
+	
+	public int firstUniqCharHackerRank(String s) {
+		int result = -1;
+		if(s!=null && s.length() > 0) {
+			Map<Character,int[]> map = new HashMap<Character,int[]>();
+
+			for(int i=0;i<s.length();i++) {
+				Character c = s.charAt(i);
+				int []indexAndOccurence = map.get(c);
+				if(indexAndOccurence == null) {
+					indexAndOccurence = new int[2];
+					indexAndOccurence[0] = i;
+				}
+				indexAndOccurence[1] = indexAndOccurence[1] + 1;
+				map.put(c, indexAndOccurence);
+			}
+
+			for(Character c : s.toCharArray()) {
+				int[] indexAndOccurence = map.get(c);
+				if(indexAndOccurence[1] == 1) {
+					return indexAndOccurence[0] + 1;
+				}
+			}
+
+		}
+
+		return result;
+
+	}
 
 	public int firstUniqChar(String s) {
 		int result = -1;
@@ -65,6 +94,9 @@ public class FirstUniqueCharacterInStr {
 		System.out.println(f.firstUniqChar("leetcode"));
 		System.out.println(f.firstUniqChar("loveleetcode"));
 		System.out.println(f.firstUniqChar("aabb"));
+		System.out.println(f.firstUniqCharHackerRank("statistics"));
+		System.out.println(f.firstUniqCharHackerRank("hackthegame"));
+		System.out.println(f.firstUniqCharHackerRank("falafal"));
 
 	}
 
