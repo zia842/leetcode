@@ -54,6 +54,7 @@ public class SearchInRotatedArray {
 	 * 7 8 0 1 2 3 4 5 6 ; Target = 5
 	 * Left = 7 ; Right = 6 ; Mid = 4 -> 2 
 	 * 2 >= 7 ; 5 >= 2 && 5 <= 6 -> Left = Mid + 1
+	 * There will be always at least 1 strictly sorted array either on left half or right half
 	 * 
 	 * @param nums
 	 * @param target
@@ -74,7 +75,7 @@ public class SearchInRotatedArray {
 			if(nums[mid] == target) {
 				return mid;
 			}
-			else if(nums[mid] >= nums[left]) {
+			else if(nums[mid] >= nums[left]) { //If true uniform on left side
 				
 				if(target <= nums[mid] && target >= nums[left]) {
 					right = mid - 1;
@@ -83,8 +84,8 @@ public class SearchInRotatedArray {
 					left = mid + 1;
 				}
 			}
-			else {
-				if(target >= nums[mid] && target <= nums[right]) {
+			else { //Right side
+				if(target >= nums[mid] && target <= nums[right]) { 
 					left = mid + 1;
 				}
 				else {
