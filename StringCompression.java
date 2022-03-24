@@ -4,7 +4,6 @@ public class StringCompression {
 	public int compress(char[] chars) {
 		int index = 0, count = 0;
 		for (int i = 0; i < chars.length; i++) {
-			char c = chars[i];
 			count++;
 			// if the next character is different or we are at the end of string
 			if (i == chars.length - 1 || chars[i] != chars[i+1]) {

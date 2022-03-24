@@ -37,7 +37,7 @@ public class RottingOranges {
 			for(String s : rotten) {
 				int i = s.charAt(0) - '0';
 				int j = s.charAt(1) - '0';
-				for(int []direction : directions ) {
+				for(int []direction : directions) {
 					int nextI = i + direction[0]; 
 					int nextJ = j + direction[1];
 					if(fresh.contains("" + nextI + nextJ)) {
